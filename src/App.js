@@ -185,11 +185,10 @@ const App = () => {
       const { ethereum } = window;
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
         const connectedContract = new ethers.Contract(
           CONTRACT_ADDRESS,
           myEpicNft.abi,
-          signer
+          provider
         );
         const tokenIds = await connectedContract.tokenIds();
         console.log(`tokenIds: ${tokenIds}`);
