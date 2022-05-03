@@ -218,7 +218,7 @@ const App = () => {
           {metamask ? (
             <p className="sub-text">{mintCount}/10のNFTがミントされています</p>
             ): (
-            <p className="sub-text">MetaMaskを接続してください</p>
+            <p className="sub-text">MetaMaskをインストールしてください<a href="https://metamask.io/" target="_blank" rel="noreferrer">https://metamask.io</a></p>
           )}
           {/*条件付きレンダリングを追加しました
           // すでに接続されている場合は、
