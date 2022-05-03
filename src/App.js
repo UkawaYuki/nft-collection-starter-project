@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 import myEpicNft from "./utils/MyEpicNFT.json";
@@ -9,8 +9,6 @@ import { SplitText } from 'gsap/dist/SplitText'
 // Constantsを宣言する: constとは値書き換えを禁止した変数を宣言する方法です。
 const TWITTER_HANDLE = "yukqi_crypto";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "";
-const TOTAL_MINT_COUNT = 5;
 const CONTRACT_ADDRESS =
     "0xA4759Ed094e20DC760a92f1680d774e14504bF7a";
 const App = () => {
@@ -21,7 +19,6 @@ const App = () => {
   const [mintState, setMintState] = useState("");
   const [mintCount, setMintCount] = useState("0");
   const [metamask, setMetamask] = useState(true);
-  const web3ModalRef = useRef();
   /*この段階でcurrentAccountの中身は空*/
   console.log("currentAccount: ", currentAccount);
   /*
