@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import "./styles/App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 import myEpicNft from "./utils/MyEpicNFT.json";
@@ -20,6 +20,8 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [mintState, setMintState] = useState("");
   const [mintCount, setMintCount] = useState("0");
+  const [metamask, setMetamask] = useState(true);
+  const web3ModalRef = useRef();
   /*この段階でcurrentAccountの中身は空*/
   console.log("currentAccount: ", currentAccount);
   /*
@@ -29,9 +31,11 @@ const App = () => {
     const { ethereum } = window;
     if (!ethereum) {
       console.log("Make sure you have MetaMask!");
+      setMetamask(false);
       return;
     } else {
       console.log("We have the ethereum object", ethereum);
+      setMetamask(true);
     }
     /*
 		// ユーザーが認証可能なウォレットアドレスを持っている場合は、
@@ -39,7 +43,6 @@ const App = () => {
     // 許可されれば、ユーザーの最初のウォレットアドレスを
     // accounts に格納する。
     */
-
     const accounts = await ethereum.request({ method: "eth_accounts" });
 
     if (accounts.length !== 0) {
@@ -212,7 +215,11 @@ const App = () => {
           <p className="header gradient-text">My NFT Collection</p>
           <p className="sub-text">あなただけの特別な NFT を Mint しよう💫</p>
           <p className="sub-text"><a href={`https://rinkeby.rarible.com/collection/${CONTRACT_ADDRESS}/items`} target="_blank" rel="noreferrer">Rarible でコレクションを表示</a></p>
-          <p className="sub-text">{mintCount}/10のNFTがミントされています</p>
+          {metamask ? (
+            <p className="sub-text">{mintCount}/10のNFTがミントされています</p>
+            ): (
+            <p className="sub-text">MetaMaskを接続してください</p>
+          )}
           {/*条件付きレンダリングを追加しました
           // すでに接続されている場合は、
           // Connect to Walletを表示しないようにします。*/}
