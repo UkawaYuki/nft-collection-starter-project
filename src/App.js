@@ -166,7 +166,7 @@ const App = () => {
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
-        setMintState(<p>Mined, see transaction: <a href="https://rinkeby.etherscan.io/tx/{nftTxn.hash}" target="_blank" rel="noreferrer">https://rinkeby.etherscan.io/tx/{nftTxn.hash}</a></p>)
+        setMintState(<p>Mined, see transaction: <a href={`https://rinkeby.etherscan.io/tx/${nftTxn.hash}`} target="_blank" rel="noreferrer">https://rinkeby.etherscan.io/tx/{nftTxn.hash}</a></p>)
         getTokenIdsMinted();
       } else {
         console.log("Ethereum object doesn't exist!");
