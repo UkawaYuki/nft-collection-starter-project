@@ -184,6 +184,16 @@ const App = () => {
     try {
       const { ethereum } = window;
       if (ethereum) {
+        /*
+        * ウォレットアドレスに対してアクセスをリクエストしています。
+        */
+        let chainId = await ethereum.request({ method: "eth_chainId" });
+        console.log("Connected to chain " + chainId);
+        // 0x4 は　Rinkeby の ID です。
+        const rinkebyChainId = "0x4";
+        if (chainId !== rinkebyChainId) {
+          alert("You are not connected to the Rinkeby Test Network! Please connect to the Rinkeby Test Network and reload the page.");
+        }
         const provider = new ethers.providers.Web3Provider(ethereum);
         const connectedContract = new ethers.Contract(
           CONTRACT_ADDRESS,
